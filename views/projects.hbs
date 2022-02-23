@@ -1,0 +1,56 @@
+<div class="container">
+
+    <h1>Project List</h1>
+
+    <blockquote>
+        Check out some cool projects that people are building!
+    </blockquote>
+
+
+    <table class="highlight centered responsive-table">
+    <thead>
+        <tr>
+        <!-- USER ONLY-->
+        
+        <th>Project Name</th>
+        <th>Team</th>
+        <th>Project Type</th>
+        <th>Languages</th>
+        <th>Platforms</th>
+        
+        <!-- ADMIN ONLY BUTTONS -->
+        <th>Creator Op</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+        {{#each projects}}
+        <tr>
+
+            <td class="blue-text clickable" onclick="location.href='/projects/{{project_id}}'">{{project_name}}</td>
+            <td>{{team_id}}</td>
+            <td>{{project_type_id}}</td>
+            <td>{{project_languages}}</td>
+            <td>{{project_platforms}}</td>
+
+            <!-- ADMIN ONLY BUTTONS -->
+            <td nowrap>
+            <a class="btn-floating btn-small waves-effect waves-light green lighten-1" href="/projectform.html"><i
+                class="material-icons">edit</i></a>
+            <a class="btn-floating waves-effect waves-light red"
+                onclick='confirmDelete("{{project_name}}","{{project_id}}", ".")'><i
+                class="material-icons">delete</i></a>
+            </td>
+        </tr>
+        {{/each}}
+
+        </tbody>
+        </table>
+    </div>
+
+    <a href="/projects/create" class="btn-floating btn-large orange fixed-action-btn">
+      <i class="large material-icons">create</i>
+    </a>
+
+    <script src="/js/event_utils.js"></script>
