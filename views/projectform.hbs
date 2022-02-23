@@ -1,0 +1,88 @@
+<form id="create_update_project" method="post" action="/project{{#if project}}/{{project.project_id}}{{/if}}">
+    <!-- action and method depend on C vs U-->
+    <input type="hidden" name="project_id" id="project_id" value="{{#if project}}{{project.project_id}}{{/if}}">
+    <!-- server sets project_id value-->
+
+    <div class="container">
+        <div class="card grey lighten-4">
+        <div class="card-content">
+
+            <span class="card-title">
+                <h1>{{title}}</h1>
+            </span>
+
+            <div class="row">
+            <div class="input-field col s12">
+                <input type="text" name="project_name" id="project_name" class="validate" data-length="32" required>
+                <label for="project_name">Project Name</label>
+            </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <select id="team_name" name="team_id" required>
+                  <option value="" disabled selected>Select a type</option>
+                  {{#each team_names}}
+                      <option value="{{team_id}}">{{team_name}}</option>
+                  {{/each}}
+                </select>
+                <label for="team">Team</label>
+              </div>
+
+            <div class="row">
+              <div class="input-field col s4">
+                <select id="project_type" name="project_type_id" required>
+                  <option value="" disabled selected>Select a type</option>
+                  {{#each project_types}}
+                      <option value="{{project_type_id}}">{{project_type}}</option>
+                  {{/each}}
+                </select>
+                <label for="project_type">Project Type</label>
+              </div>
+
+            <div class="input-field col s8">
+                <input type="text" id="project_languages" class="validate" data-length="32" required>
+                <label for="project_languages">Languages</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="text" id="project_platforms" class="validate" data-length="32" required>
+                <label for="project_platforms">Platforms</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="project_description" class="materialize-textarea" data-length="500"></textarea>
+                <label for="project_description">Description</label>
+            </div>
+        </div>
+
+        <div class="button_wrapper">
+            <button class="submit waves-effect waves-light btn" type="submit">{{#if project}}Update{{else}}Create{{/if}}</button>
+        </div>
+
+        </div>
+    </div>
+    </div>
+</form>
+
+<script>
+    {{#with project}} 
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById("project_name").value = "{{project_name}}";
+        document.getElementById("team_name").value = "{{team_id}}";
+        document.getElementById("project_type").value = "{{project_type_id}}";
+        document.getElementById("project_languages").value = "{{project_languages}}";
+        document.getElementById("project_platforms").value = "{{project_platforms}}";
+        {{!-- Use triple mustaches to NOT escape characters --}}
+        document.getElementById("project_description").value = "{{{project_description}}}";
+
+        
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, {});
+    });
+    {{/with}}
+</script>
