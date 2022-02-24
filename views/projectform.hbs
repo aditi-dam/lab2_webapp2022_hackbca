@@ -21,8 +21,8 @@
             <div class="row">
               <div class="input-field col s12">
                 <select id="team_name" name="team_id" required>
-                  <option value="" disabled selected>Select a type</option>
-                  {{#each team_names}}
+                  <option value="" disabled selected>Select a team</option>
+                  {{#each project_teams}}
                       <option value="{{team_id}}">{{team_name}}</option>
                   {{/each}}
                 </select>

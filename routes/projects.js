@@ -59,7 +59,7 @@ router.get('/:project_id/modify', async function(req, res, next) {
         let project_types = await db.queryPromise(project_types_query);
       
         let project_id = req.params.project_id
-        let results = await db.queryPromise( singleProjectForFormQuery, [project_id]);
+        let results = await db.queryPromise(singleProjectForFormQuery, [project_id]);
         let project_data = results[0];
   
         res.render('projectform', {title: "Modify Project", style: "newevent", 
