@@ -44,7 +44,7 @@ router.get('/:project_id', function(req, res, next) {
         console.log(results);
         let project_data = results[0];
         res.render('project', { title: 'Project Details', 
-                        styles: ["tables", "project"], 
+                        styles: ["tables", "event"], 
                         project_id : project_id, 
                         project_data: project_data});
     });

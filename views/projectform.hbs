@@ -1,4 +1,4 @@
-<form id="create_update_project" method="post" action="/project{{#if project}}/{{project.project_id}}{{/if}}">
+<form id="create_update_project" method="post" action="/projects{{#if project}}/{{project.project_id}}{{/if}}">
     <!-- action and method depend on C vs U-->
     <input type="hidden" name="project_id" id="project_id" value="{{#if project}}{{project.project_id}}{{/if}}">
     <!-- server sets project_id value-->
