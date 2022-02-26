@@ -81,9 +81,8 @@ router.post('/', async function(req, res, next) {
             req.body.project_platforms,
             req.body.project_description
         ]);
-  
-    let project_id_inserted = results.insertId;
-    res.redirect(`/projects/${project_id_inserted}`);
+        let project_id_inserted = results.insertId;
+        res.redirect(`/projects/${project_id_inserted}`);
     } catch(err) {
         next(err);
     }
@@ -100,9 +99,18 @@ router.post('/:project_id', async function(req, res, next) {
             req.body.project_description,
             req.params.project_id
         ]);
-  
-    res.redirect(`/projects/${req.params.project_id}`);
+        res.redirect(`/projects/${req.params.project_id}`);
     } catch(err) {
+        next(err);
+    }
+})
+
+let deleteProjectQuery = "DELETE FROM project WHERE project_id = ?";
+router.get('/:project_id/delete', async (req, res, next) => {
+    try {
+        await db.queryPromise(deleteProjectQuery, req.params.project_id);
+        res.redirect('/projects')
+    } catch (err) {
         next(err);
     }
 })
