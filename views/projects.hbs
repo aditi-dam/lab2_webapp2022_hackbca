@@ -38,7 +38,7 @@
             <a class="btn-floating btn-small waves-effect waves-light green lighten-1" href="/projects/{{project_id}}/modify"><i
                 class="material-icons">edit</i></a>
             <a class="btn-floating waves-effect waves-light red"
-                onclick='confirmDelete("{{project_name}}","{{project_id}}", ".")'><i
+                onclick='confirmProjectDelete("{{project_name}}","{{project_id}}")'><i
                 class="material-icons">delete</i></a>
             </td>
         </tr>
@@ -52,4 +52,4 @@
       <i class="large material-icons">create</i>
     </a>
 
-    <script src="/js/event_utils.js"></script>
+    <script src="/js/project_utils.js"></script>

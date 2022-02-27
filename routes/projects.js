@@ -75,12 +75,13 @@ let insertProjectQuery = fs.readFileSync(path.join(__dirname, "../db/insert_proj
 router.post('/', async function(req, res, next) {
     try {
         let results = await db.queryPromise(insertProjectQuery, [req.body.project_name, 
-            req.body.team_id, 
-            req.body.project_type_id, 
+            req.body.team_name, 
+            req.body.project_type, 
             req.body.project_languages,
             req.body.project_platforms,
             req.body.project_description
         ]);
+        console.log(results);
         let project_id_inserted = results.insertId;
         res.redirect(`/projects/${project_id_inserted}`);
     } catch(err) {
@@ -92,8 +93,8 @@ let updateProjectQuery = fs.readFileSync(path.join(__dirname, "../db/update_proj
 router.post('/:project_id', async function(req, res, next) {
     try {
         let results = await db.queryPromise(updateProjectQuery, [req.body.project_name, 
-            req.body.team_id, 
-            req.body.project_type_id, 
+            req.body.team_name, 
+            req.body.project_type, 
             req.body.project_languages,
             req.body.project_platforms,
             req.body.project_description,
